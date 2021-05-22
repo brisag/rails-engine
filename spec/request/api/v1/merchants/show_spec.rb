@@ -18,4 +18,13 @@ RSpec.describe "Merchants API", type: :request do
       expect(merchant[:data][:attributes][:name]).to be_a(String)
     end
   end
+
+  describe 'Sad Path' do
+    xit 'can get one merchant by its id' do
+      get "/api/v1/merchants/0"
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq 404
+    end
+  end
 end
