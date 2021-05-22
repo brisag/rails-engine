@@ -77,5 +77,34 @@ RSpec.describe "Merchants API", type: :request do
       # binding.pry
       expect(page_3[:data].first[:id].to_i).to eq(page_3_first_id)
     end
+
+    it 'can get page 50 of merchants, shows 0 data' do
+      get '/api/v1/merchants?page=50'
+      merchants = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to be_successful
+
+      expect(merchants[:data].count).to eq(0)
+    end
+
+    it 'shows OPTIONAL query params. Shows page of 50 merchants' do
+      get '/api/v1/merchants?per_page=50'
+
+      expect(response).to be_successful
+
+      merchants = JSON.parse(response.body, symbolize_names: true)
+
+      expect(merchants[:data].count).to eq(50)
+    end
+
+    it 'shows OPTIONAL query params. Shows page of 500 merchants' do
+      get '/api/v1/merchants?per_page=500'
+
+      expect(response).to be_successful
+
+      merchants = JSON.parse(response.body, symbolize_names: true)
+
+      expect(merchants[:data].count).to eq(50)
+    end
   end
 end
