@@ -20,7 +20,7 @@ RSpec.describe "Merchants API", type: :request do
   end
 
   describe 'Sad Path' do
-    xit 'can get one merchant by its id' do
+    it 'can get one merchant by its id' do
       get "/api/v1/merchants/0"
 
       expect(response).to_not be_successful
