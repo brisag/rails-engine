@@ -1,13 +1,18 @@
 require 'rails_helper'
 RSpec.describe 'Items API', type: :request do
   before :each do
-    @merchant = create(:merchant)
+    @item = create(:item)
 
-    create_list(:item, 5, merchant: @merchant)
   end
 
-  describe 'Items Destroy Page' do
-    it 'can edit and item' do
-    end
+  describe 'Item Destroy' do
+    it "can delete an item" do
+      delete "/api/v1/items/#{@item.id}"
+
+			expect(response).to be_successful
+			expect(response.status).to eq(204)
+			expect(response.body).to be_empty
+			expect{Item.find(@item.id)}.to raise_error(ActiveRecord::RecordNotFound)
+		end
   end
 end

@@ -118,7 +118,7 @@ RSpec.describe 'Items API', type: :request do
   end
 
   describe 'sad path' do
-    xit 'shows page 1 if page is 0 or lower' do
+    it 'shows page 1 if page is 0 or lower' do
       get '/api/v1/items?page=1'
       page_1 = JSON.parse(response.body, symbolize_names: true)
 
