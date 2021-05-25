@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
 
 
   def record_not_found
-    render plain: '404 Not Found', status: :not_found
+    render json: { error: '404 Not Found' }, status: :not_found
   end
 
   def record_bad_request
