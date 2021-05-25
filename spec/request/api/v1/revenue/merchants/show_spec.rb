@@ -24,30 +24,19 @@ RSpec.describe 'Revenue::MerchantController Show', type: :request do
     @transaction3 = create(:transaction, invoice_id: @invoice3.id, result: "success")
     @transaction4 = create(:transaction, invoice_id: @invoice4.id, result: "failed")
   end
-#
-#   {
-#   "data": {
-#     "id": "42",
-#     "type": "merchant_revenue",
-#     "attributes": {
-#       "revenue"  : 532613.9800000001
-#     }
-#   }
-# }
+
 
   describe 'Show Action' do
     it 'should return the total revenue for a single merchant' do
-      # GET /api/v1/revenue/merchants/:id
       get "/api/v1/revenue/merchants/#{@merchant.id}"
       expect(response).to be_successful
       merchant = JSON.parse(response.body, symbolize_names: true)
-      # binding.pry
       expect(merchant[:data]).to have_key(:id)
       expect(merchant[:data][:id].to_i).to eq(@merchant.id)
 
       expect(merchant[:data]).to have_key(:type)
       expect(merchant[:data][:type]).to eq('merchant_revenue')
-
+      #
       # expect(merchant[:data][:attributes]).to have_key(:name)
       # expect(merchant[:data][:attributes][:name]).to be_a(String)
       # expect(merchant[:data][:attributes][:name]).to eq("Prosacco, Willms and Oberbrunner")
