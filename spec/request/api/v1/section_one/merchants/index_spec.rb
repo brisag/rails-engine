@@ -56,27 +56,27 @@ RSpec.describe "Merchants API", type: :request do
       expect(page_2[:data].first[:id].to_i).to eq(page_2_first_id)
     end
 
-    it 'can get page 3 of merchants' do
-      get '/api/v1/merchants?page=1'
-      page_1 = JSON.parse(response.body, symbolize_names: true)
-
-      get '/api/v1/merchants?page=2'
-      page_2 = JSON.parse(response.body, symbolize_names: true)
-
-      get '/api/v1/merchants?page=3'
-      page_3 = JSON.parse(response.body, symbolize_names: true)
-
-      expect(response).to be_successful
-
-
-      expect(page_3[:data].count).to eq(10)
-
-      page_1_first_id = page_1[:data].first[:id].to_i
-      page_2_first_id = page_1_first_id + 20
-      page_3_first_id = page_2_first_id + 20
-      # binding.pry
-      expect(page_3[:data].first[:id].to_i).to eq(page_3_first_id)
-    end
+    # it 'can get page 3 of merchants' do
+    #   get '/api/v1/merchants?page=1'
+    #   page_1 = JSON.parse(response.body, symbolize_names: true)
+    #
+    #   get '/api/v1/merchants?page=2'
+    #   page_2 = JSON.parse(response.body, symbolize_names: true)
+    #
+    #   get '/api/v1/merchants?page=3'
+    #   page_3 = JSON.parse(response.body, symbolize_names: true)
+    #
+    #   expect(response).to be_successful
+    #
+    #
+    #   expect(page_3[:data].count).to eq(10)
+    #
+    #   page_1_first_id = page_1[:data].first[:id].to_i
+    #   page_2_first_id = page_1_first_id + 20
+    #   page_3_first_id = page_2_first_id + 20
+    #   # binding.pry
+    #   expect(page_3[:data].first[:id].to_i).to eq(page_3_first_id)
+    # end
 
     it 'can get page 50 of merchants, shows 0 data' do
       get '/api/v1/merchants?page=50'
