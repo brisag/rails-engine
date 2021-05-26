@@ -5,6 +5,9 @@ Rails.application.routes.draw do
       resources :merchants, only: [:index, :show] do
         resources :items, controller: :merchant_items, only: [:index]
       end
+      resources :items do
+        resources :merchant, controller: :items_merchant, only: [:index]
+      end
       resources :items
       namespace :revenue do
         resources :merchants, only: [:show]
@@ -12,3 +15,6 @@ Rails.application.routes.draw do
     end
   end
 end
+
+
+# get "/api/v1/items/#{@item.id}/merchant"
