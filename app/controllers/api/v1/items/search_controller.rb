@@ -7,8 +7,9 @@ class Api::V1::Items::SearchController < ApplicationController
            else
              Item.min_max_search(params[:min_price], params[:max_price])
            end
-    return render json: { data: {} } if item.nil?
-    return ItemSerializer.new(item)
+    render json: item.nil? ? { data: {} } : ItemSerializer.new(item)
+    # return render json: { data: {} } if item.nil?
+    # return ItemSerializer.new(item)
   end
 
 private
