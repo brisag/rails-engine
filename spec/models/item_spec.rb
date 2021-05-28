@@ -9,9 +9,9 @@ RSpec.describe Item do
   before :each do
     @merchant = create(:merchant)
 
-    @item1 = create(:item, name: 'Turing', unit_price: 20000.00)
-    @item2 = create(:item, name: 'Ring Mart', unit_price: 120.00)
-    @item3 = create(:item, name: 'Wamart', unit_price: 50.00)
+    @item1 = create(:item, name: 'Turing', unit_price: 20000.00, merchant_id: @merchant.id)
+    @item2 = create(:item, name: 'Ring Mart', unit_price: 120.00, merchant_id: @merchant.id)
+    @item3 = create(:item, name: 'Wamart', unit_price: 50.00, merchant_id: @merchant.id)
 
     @invoice = create(:invoice, merchant_id: @merchant)
     @invoice_item1 = create(:invoice_item, item: @item1, invoice: @invoice, quantity: 2, unit_price: 5.00)
@@ -32,15 +32,15 @@ RSpec.describe Item do
 
     describe '::search_by_price' do
       it 'max and min price' do
-        expect(Item.min_max_search(20, 100)).to eq(nil)
+        expect(Item.min_max_search(100, 200)).to eq(@item2)
       end
 
       it 'min price ony' do
-        expect(Item.min_max_search(200, nil)).to eq(@item2)
+        expect(Item.min_max_search(200, nil)).to eq(@item1)
       end
 
       it 'max price ony' do
-        expect(Item.min_max_search(nil, 200)).to eq(@item1)
+        expect(Item.min_max_search(nil, 200)).to eq(@item2)
       end
     end
   end

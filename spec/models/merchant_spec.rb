@@ -56,12 +56,9 @@ RSpec.describe Merchant do
 
         merchants = Merchant.merchants_with_most_revenue(3)
         expect(merchants.to_a).to eq([@merchant4, @merchant3, @merchant2])
-
-        # expect(merchants.first.revenue.to_f).to eq(29.97)
       end
     end
   end
-
 
   describe 'instance methods' do
     before :each do

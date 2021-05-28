@@ -5,7 +5,7 @@ class Api::V1::Items::SearchController < ApplicationController
     item = if params[:name]
              Item.search_criteria(params[:name].downcase).first
            else
-             Item.min_max_search(params[:max_price], params[:min_price])
+             Item.min_max_search(params[:min_price], params[:max_price])
            end
     render json: item.nil? ? { data: {} } : ItemSerializer.new(item)
   end

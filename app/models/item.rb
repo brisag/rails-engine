@@ -31,8 +31,8 @@ class Item < ApplicationRecord
       where('unit_price <= ?', "#{max_price}").order(:name).first
     end
 
-    def min_max_search(max_price, min_price)
-      if max_price.present? && min_price.present?
+    def min_max_search(min_price, max_price)
+      if min_price.present? && max_price.present?
         where('unit_price between ? and ?', "#{min_price}", "#{max_price}").order(:name).first
       else
         max_price.nil? && min_price.nil?
