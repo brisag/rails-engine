@@ -38,7 +38,7 @@ RSpec.describe 'Item API', type: :request do
 
       patch "/api/v1/items/#{@item.id}", headers: headers, params: JSON.generate({item: item_params})
 
-      expect(response.status).to eq(404)
+      expect(response.status).to eq(400)
     end
   end
 end

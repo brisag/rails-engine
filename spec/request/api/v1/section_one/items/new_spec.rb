@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 RSpec.describe 'Items API', type: :request do
   before :each do
     # @item = create(:item)
@@ -43,8 +44,8 @@ RSpec.describe 'Items API', type: :request do
 
       post '/api/v1/items', headers: headers, params: JSON.generate(item: item_params)
 
-      # expect(response).not_to be_successful
-      expect(response.status).to eq(404)
+      expect(response).not_to be_successful
+      expect(response.status).to eq(400)
     end
 
     it 'should ignore any attributes sent by the user which are not allowed' do
