@@ -88,7 +88,7 @@ From your browser:
 [(Back to top)](#table-of-contents)
 
 * Thank you to Turing School of Software and Design for the inspiration and direction in building this application
-* Developed by Joey Haas
+* Developed by Brisa Garcia Gonzales
   + [Git Hub](https://github.com/brisag) 
   + [LinkedIn](https://www.linkedin.com/in/brisa-garcia/) 
 
